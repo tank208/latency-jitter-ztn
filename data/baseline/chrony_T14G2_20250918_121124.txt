@@ -1,0 +1,35 @@
+=== Chrony Tracking ===
+Reference ID    : 6C3DD7DD (108.61.215.221.vultrusercontent.com)
+Stratum         : 5
+Ref time (UTC)  : Thu Sep 18 19:10:20 2025
+System time     : 0.000077544 seconds slow of NTP time
+Last offset     : +0.000212580 seconds
+RMS offset      : 0.000293501 seconds
+Frequency       : 4.752 ppm slow
+Residual freq   : +0.034 ppm
+Skew            : 0.723 ppm
+Root delay      : 0.071762674 seconds
+Root dispersion : 0.005093880 seconds
+Update interval : 64.4 seconds
+Leap status     : Normal
+
+=== Chrony Sources ===
+
+  .-- Source mode  '^' = server, '=' = peer, '#' = local clock.
+ / .- Source state '*' = current best, '+' = combined, '-' = not combined,
+| /             'x' = may be in error, '~' = too variable, '?' = unusable.
+||                                                 .- xxxx [ yyyy ] +/- zzzz
+||      Reachability register (octal) -.           |  xxxx = adjusted offset,
+||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
+||                                \     |          |  zzzz = estimated error.
+||                                 |    |           \
+MS Name/IP address         Stratum Poll Reach LastRx Last sample               
+===============================================================================
+^+ prod-ntp-3.ntp4.ps5.cano>     2   6   377    64  -1174us[ -962us] +/-   71ms
+^+ prod-ntp-4.ntp1.ps5.cano>     2   7   377     1   -852us[ -852us] +/-   71ms
+^+ prod-ntp-5.ntp1.ps5.cano>     2   6   377    62  -2749us[-2749us] +/-   76ms
+^- alphyn.canonical.com          2   6   377    62  +1087us[+1087us] +/-   66ms
+^+ 50.117.3.52                   3   7   377    62   +869us[ +869us] +/-   71ms
+^+ 172-234-37-140.ip.linode>     2   6   377    65   -934us[ -722us] +/-   90ms
+^* 108.61.215.221.vultruser>     4   6   377    63   +636us[ +849us] +/-   41ms
+^+ connected.by.freedominte>     2   7   377    61  +1638us[+1638us] +/-   76ms

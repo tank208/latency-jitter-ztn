@@ -8,7 +8,7 @@ DURATION=${3:-30}    # default 30s
 DATE=$(date +"%Y%m%d_%H%M%S")
 HOST=$(hostname)
 
-OUTDIR="../latency-jitter-ztn/data/baseline"
+OUTDIR="$(pwd)/data/baseline"
 mkdir -p $OUTDIR
 
 OUTFILE="$OUTDIR/iperf_udp_${HOST}_to_${SERVER}_$DATE.txt"
