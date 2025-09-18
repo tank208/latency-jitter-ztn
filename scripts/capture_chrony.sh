@@ -5,7 +5,7 @@
 DATE=$(date +"%Y%m%d_%H%M%S")
 HOST=$(hostname)
 
-OUTDIR="../data/baseline"
+OUTDIR="../latency-jitter-ztn/data/baseline"
 mkdir -p $OUTDIR
 
 OUTFILE="$OUTDIR/chrony_${HOST}_$DATE.txt"

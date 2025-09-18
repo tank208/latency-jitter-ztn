@@ -7,7 +7,7 @@ COUNT=${2:-200}   # default 200 if not provided
 DATE=$(date +"%Y%m%d_%H%M%S")
 HOST=$(hostname)
 
-OUTDIR="../data/baseline"
+OUTDIR="../latency-jitter-ztn/data/baseline"
 mkdir -p $OUTDIR
 
 OUTFILE="$OUTDIR/ping_${HOST}_to_${TARGET}_$DATE.txt"
