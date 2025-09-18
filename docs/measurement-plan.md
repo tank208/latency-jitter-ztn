@@ -1,7 +1,7 @@
 # Measurement Plan: Latency & Jitter in Zero Trust Networks (NILE Case Study)
 
 **Author:** Will Hall
-**Date:** September 2025
+**Date:** September 18, 2025
 
 ---
 
@@ -155,4 +155,3 @@ This document defines the measurement methodology for capturing latency, jitter,
 * Graphs and analysis stored in `/analysis/`.
 * Interim progress report to faculty at Week 6.
 * Academic paper draft by semester’s end.
-
