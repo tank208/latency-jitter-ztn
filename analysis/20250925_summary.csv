@@ -1,0 +1,7 @@
+file,type,start,end,avg_latency_ms,min_latency_ms,max_latency_ms,avg_jitter_ms,avg_bw_kbps
+data/baseline/20250925/iperf_pi1_to_pi2_20250925_215040.log,iperf,5],5],,,,0.000,,0.000
+data/baseline/20250925/iperf_pi1_to_pi2_20250925_215250.log,iperf,5],5],,,,0.000,,0.000
+data/baseline/20250925/iperf_pi1_to_pi2_20250925_215457.log,iperf,5],5],,,,0.000,,0.000
+data/baseline/20250925/ping_pi1_to_pi2_20250925_215040.log,ping,,2025-09-25 14:51:00,0.246,0.210,0.597,,,,
+data/baseline/20250925/ping_pi1_to_pi2_20250925_215250.log,ping,,,0.228,0.195,0.342,,,,
+data/baseline/20250925/ping_pi1_to_pi2_20250925_215457.log,ping,,2025-09-26 14:54:56,0.191,0.140,0.364,,,,

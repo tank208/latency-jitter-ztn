@@ -2,3 +2,7 @@ date,host,target,type,avg_rtt_ms,jitter_ms,loss_percent
 20250918_115823,ZTN/latency-jitter-ztn/data/baseline/ping,to,ping,0.068,,0
 20250918_120941,udp,to,iperf,,ms,receiver
 20250918_121030,udp,to,iperf,,ms,receiver
+20250918_115823,ZTN/latency-jitter-ztn/data/baseline/ping,to,ping,0.068,,0
+20250922_151215,ZTN/latency-jitter-ztn/data/baseline/ping,to,ping,0.270,,0
+20250918_120941,udp,to,iperf,,ms,receiver
+20250918_121030,udp,to,iperf,,ms,receiver
