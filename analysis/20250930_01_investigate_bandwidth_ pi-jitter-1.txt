@@ -1,0 +1,301 @@
+hall4024@pi-jitter-1:~$ ./investigate_bandwidth.sh
+==========================================
+NETWORK BANDWIDTH INVESTIGATION
+==========================================
+
+1. CHECKING NETWORK INTERFACE SPEED & DUPLEX
+------------------------------------------
+Primary interface: eth0
+
+Interface details:
+	Speed: 1000Mb/s
+	Duplex: Full
+	Link detected: yes
+
+
+2. CHECKING NETWORK INTERFACE ERRORS
+------------------------------------------
+    RX:   bytes  packets errors dropped  missed   mcast           
+       67483531   818468      0  171286       0  182704 
+    TX:   bytes  packets errors dropped carrier collsns           
+    33412972223 23009047      0       1       0       0 
+
+
+3. CHECKING MTU SIZE
+------------------------------------------
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+Note: Standard MTU is 1500. Lower values may reduce throughput.
+
+4. CHECKING FOR TRAFFIC CONTROL (tc) RULES
+------------------------------------------
+qdisc mq 0: root 
+qdisc fq_codel 0: parent :5 limit 10240p flows 1024 quantum 1514 target 5ms interval 100ms memory_limit 32Mb ecn drop_batch 64 
+qdisc fq_codel 0: parent :4 limit 10240p flows 1024 quantum 1514 target 5ms interval 100ms memory_limit 32Mb ecn drop_batch 64 
+qdisc fq_codel 0: parent :3 limit 10240p flows 1024 quantum 1514 target 5ms interval 100ms memory_limit 32Mb ecn drop_batch 64 
+qdisc fq_codel 0: parent :2 limit 10240p flows 1024 quantum 1514 target 5ms interval 100ms memory_limit 32Mb ecn drop_batch 64 
+qdisc fq_codel 0: parent :1 limit 10240p flows 1024 quantum 1514 target 5ms interval 100ms memory_limit 32Mb ecn drop_batch 64 
+class mq :1 root 
+class mq :2 root 
+class mq :3 root 
+class mq :4 root 
+class mq :5 root 
+Note: 'qdisc pfifo_fast' or 'qdisc noqueue' is normal (no rate limiting)
+      'qdisc tbf' or 'qdisc htb' indicates rate limiting is active
+
+5. CHECKING IPTABLES FOR RATE LIMITING
+------------------------------------------
+Note: No output = no iptables rate limiting
+
+6. CHECKING CPU STATUS (throttling can affect network)
+------------------------------------------
+CPU frequency:
+600000
+Throttling status:
+Can't open device file: /dev/vcio
+Try creating a device file with: sudo mknod /dev/vcio c 100 0
+Temperature:
+Can't open device file: /dev/vcio
+Try creating a device file with: sudo mknod /dev/vcio c 100 0
+
+7. CHECKING NETWORK DRIVER & MODULE
+------------------------------------------
+driver: bcmgenet
+version: 6.14.0-1013-raspi
+firmware-version: 
+expansion-rom-version: 
+
+8. RUNNING ENHANCED IPERF3 TESTS
+------------------------------------------
+Instructions:
+On SERVER (e.g., pi2): iperf3 -s
+On CLIENT (e.g., pi1): Run the following tests
+
+Enter IP address of the iperf3 server: 192.168.50.12
+
+Test 1: Standard TCP test (10 seconds)
+Connecting to host 192.168.50.12, port 5201
+[  5] local 192.168.50.11 port 42288 connected to 192.168.50.12 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec   110 MBytes   923 Mbits/sec    0    506 KBytes       
+[  5]   1.00-2.00   sec   112 MBytes   941 Mbits/sec    0    602 KBytes       
+[  5]   2.00-3.00   sec   112 MBytes   942 Mbits/sec    0    602 KBytes       
+[  5]   3.00-4.00   sec   112 MBytes   937 Mbits/sec    0    602 KBytes       
+[  5]   4.00-5.00   sec   113 MBytes   948 Mbits/sec    0    602 KBytes       
+[  5]   5.00-6.00   sec   112 MBytes   941 Mbits/sec    0    602 KBytes       
+[  5]   6.00-7.00   sec   111 MBytes   934 Mbits/sec    0    602 KBytes       
+[  5]   7.00-8.00   sec   113 MBytes   946 Mbits/sec    0    602 KBytes       
+[  5]   8.00-9.00   sec   112 MBytes   943 Mbits/sec    0    602 KBytes       
+[  5]   9.00-10.00  sec   111 MBytes   930 Mbits/sec    0    602 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec  1.09 GBytes   939 Mbits/sec    0            sender
+[  5]   0.00-10.01  sec  1.09 GBytes   937 Mbits/sec                  receiver
+
+iperf Done.
+
+Test 2: TCP with larger window size (reduces overhead)
+Connecting to host 192.168.50.12, port 5201
+[  5] local 192.168.50.11 port 50320 connected to 192.168.50.12 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec   112 MBytes   934 Mbits/sec    0    229 KBytes       
+[  5]   1.00-2.00   sec   111 MBytes   929 Mbits/sec    0    229 KBytes       
+[  5]   2.00-3.00   sec   112 MBytes   937 Mbits/sec    0    229 KBytes       
+[  5]   3.00-4.00   sec   112 MBytes   938 Mbits/sec    0    229 KBytes       
+[  5]   4.00-5.00   sec   111 MBytes   929 Mbits/sec    0    229 KBytes       
+[  5]   5.00-6.00   sec   112 MBytes   937 Mbits/sec    0    229 KBytes       
+[  5]   6.00-7.00   sec   112 MBytes   936 Mbits/sec    0    229 KBytes       
+[  5]   7.00-8.00   sec   111 MBytes   930 Mbits/sec    0    229 KBytes       
+[  5]   8.00-9.00   sec   111 MBytes   932 Mbits/sec    0    229 KBytes       
+[  5]   9.00-10.00  sec   110 MBytes   925 Mbits/sec    0    229 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec  1.09 GBytes   933 Mbits/sec    0            sender
+[  5]   0.00-10.00  sec  1.09 GBytes   933 Mbits/sec                  receiver
+
+iperf Done.
+
+Test 3: Multiple parallel streams (tests aggregate bandwidth)
+Connecting to host 192.168.50.12, port 5201
+[  5] local 192.168.50.11 port 35312 connected to 192.168.50.12 port 5201
+[  7] local 192.168.50.11 port 35326 connected to 192.168.50.12 port 5201
+[  9] local 192.168.50.11 port 35332 connected to 192.168.50.12 port 5201
+[ 11] local 192.168.50.11 port 35346 connected to 192.168.50.12 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec   256 KBytes  2.09 Mbits/sec    0   49.5 KBytes       
+[  7]   0.00-1.00   sec  1.50 MBytes  12.6 Mbits/sec   49   22.6 KBytes       
+[  9]   0.00-1.00   sec  0.00 Bytes  0.00 bits/sec    1   2.83 KBytes       
+[ 11]   0.00-1.00   sec   114 MBytes   954 Mbits/sec    0    587 KBytes       
+[SUM]   0.00-1.00   sec   116 MBytes   969 Mbits/sec   50             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   1.00-2.00   sec  0.00 Bytes  0.00 bits/sec    5   31.1 KBytes       
+[  7]   1.00-2.00   sec  1.62 MBytes  13.6 Mbits/sec   22   39.6 KBytes       
+[  9]   1.00-2.00   sec  0.00 Bytes  0.00 bits/sec    6   9.90 KBytes       
+[ 11]   1.00-2.00   sec   110 MBytes   924 Mbits/sec    0    587 KBytes       
+[SUM]   1.00-2.00   sec   112 MBytes   937 Mbits/sec   33             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   2.00-3.00   sec  0.00 Bytes  0.00 bits/sec    6   29.7 KBytes       
+[  7]   2.00-3.00   sec  1.12 MBytes  9.44 Mbits/sec    0   59.4 KBytes       
+[  9]   2.00-3.00   sec  0.00 Bytes  0.00 bits/sec    4   9.90 KBytes       
+[ 11]   2.00-3.00   sec   111 MBytes   931 Mbits/sec    0    617 KBytes       
+[SUM]   2.00-3.00   sec   112 MBytes   941 Mbits/sec   10             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   3.00-4.00   sec  0.00 Bytes  0.00 bits/sec    0   29.7 KBytes       
+[  7]   3.00-4.00   sec  1.00 MBytes  8.39 Mbits/sec   31   41.0 KBytes       
+[  9]   3.00-4.00   sec  0.00 Bytes  0.00 bits/sec    0   9.90 KBytes       
+[ 11]   3.00-4.00   sec   112 MBytes   935 Mbits/sec    0    617 KBytes       
+[SUM]   3.00-4.00   sec   112 MBytes   944 Mbits/sec   31             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   4.00-5.00   sec  0.00 Bytes  0.00 bits/sec    1   29.7 KBytes       
+[  7]   4.00-5.00   sec  1.00 MBytes  8.39 Mbits/sec   15   36.8 KBytes       
+[  9]   4.00-5.00   sec   128 KBytes  1.05 Mbits/sec    0   9.90 KBytes       
+[ 11]   4.00-5.00   sec   112 MBytes   940 Mbits/sec    0    617 KBytes       
+[SUM]   4.00-5.00   sec   113 MBytes   949 Mbits/sec   16             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   5.00-6.00   sec   128 KBytes  1.05 Mbits/sec    0   33.9 KBytes       
+[  7]   5.00-6.00   sec   896 KBytes  7.34 Mbits/sec   13   41.0 KBytes       
+[  9]   5.00-6.00   sec  0.00 Bytes  0.00 bits/sec    0   9.90 KBytes       
+[ 11]   5.00-6.00   sec   111 MBytes   928 Mbits/sec    0    617 KBytes       
+[SUM]   5.00-6.00   sec   112 MBytes   936 Mbits/sec   13             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   6.00-7.00   sec  0.00 Bytes  0.00 bits/sec   10   17.0 KBytes       
+[  7]   6.00-7.00   sec  2.12 MBytes  17.8 Mbits/sec   27   36.8 KBytes       
+[  9]   6.00-7.00   sec  0.00 Bytes  0.00 bits/sec    0   15.6 KBytes       
+[ 11]   6.00-7.00   sec   110 MBytes   921 Mbits/sec    0    617 KBytes       
+[SUM]   6.00-7.00   sec   112 MBytes   938 Mbits/sec   37             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   7.00-8.00   sec   128 KBytes  1.05 Mbits/sec    2   15.6 KBytes       
+[  7]   7.00-8.00   sec  1.50 MBytes  12.6 Mbits/sec   17   21.2 KBytes       
+[  9]   7.00-8.00   sec   128 KBytes  1.05 Mbits/sec    5   14.1 KBytes       
+[ 11]   7.00-8.00   sec   111 MBytes   932 Mbits/sec    0    617 KBytes       
+[SUM]   7.00-8.00   sec   113 MBytes   947 Mbits/sec   24             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   8.00-9.00   sec  0.00 Bytes  0.00 bits/sec    1   33.9 KBytes       
+[  7]   8.00-9.00   sec  1.12 MBytes  9.44 Mbits/sec   14   41.0 KBytes       
+[  9]   8.00-9.00   sec  0.00 Bytes  0.00 bits/sec    1   17.0 KBytes       
+[ 11]   8.00-9.00   sec   110 MBytes   927 Mbits/sec    0    617 KBytes       
+[SUM]   8.00-9.00   sec   112 MBytes   937 Mbits/sec   16             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[  5]   9.00-10.00  sec  0.00 Bytes  0.00 bits/sec    0   35.4 KBytes       
+[  7]   9.00-10.00  sec   768 KBytes  6.28 Mbits/sec   14   38.2 KBytes       
+[  9]   9.00-10.00  sec  0.00 Bytes  0.00 bits/sec    0   17.0 KBytes       
+[ 11]   9.00-10.00  sec   111 MBytes   928 Mbits/sec    0    617 KBytes       
+[SUM]   9.00-10.00  sec   112 MBytes   934 Mbits/sec   14             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec   512 KBytes   419 Kbits/sec   25            sender
+[  5]   0.00-10.00  sec   384 KBytes   314 Kbits/sec                  receiver
+[  7]   0.00-10.00  sec  12.6 MBytes  10.6 Mbits/sec  202            sender
+[  7]   0.00-10.00  sec  12.1 MBytes  10.2 Mbits/sec                  receiver
+[  9]   0.00-10.00  sec   256 KBytes   210 Kbits/sec   17            sender
+[  9]   0.00-10.00  sec   128 KBytes   105 Kbits/sec                  receiver
+[ 11]   0.00-10.00  sec  1.09 GBytes   933 Mbits/sec    0            sender
+[ 11]   0.00-10.00  sec  1.08 GBytes   931 Mbits/sec                  receiver
+[SUM]   0.00-10.00  sec  1.10 GBytes   944 Mbits/sec  244             sender
+[SUM]   0.00-10.00  sec  1.10 GBytes   941 Mbits/sec                  receiver
+
+iperf Done.
+
+Test 4: UDP test (tests max throughput without TCP overhead)
+Connecting to host 192.168.50.12, port 5201
+[  5] local 192.168.50.11 port 43171 connected to 192.168.50.12 port 5201
+[ ID] Interval           Transfer     Bitrate         Total Datagrams
+[  5]   0.00-1.00   sec  11.9 MBytes   100 Mbits/sec  8641  
+[  5]   1.00-2.00   sec  11.9 MBytes   100 Mbits/sec  8633  
+[  5]   2.00-3.00   sec  11.9 MBytes   100 Mbits/sec  8625  
+[  5]   3.00-4.00   sec  11.9 MBytes   100 Mbits/sec  8640  
+[  5]   4.00-5.00   sec  11.9 MBytes   100 Mbits/sec  8633  
+[  5]   5.00-6.00   sec  11.9 MBytes   100 Mbits/sec  8632  
+[  5]   6.00-7.00   sec  11.9 MBytes   100 Mbits/sec  8633  
+[  5]   7.00-8.00   sec  11.9 MBytes   100 Mbits/sec  8633  
+[  5]   8.00-9.00   sec  11.9 MBytes   100 Mbits/sec  8632  
+[  5]   9.00-10.00  sec  11.9 MBytes  99.9 Mbits/sec  8633  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-10.00  sec   119 MBytes   100 Mbits/sec  0.000 ms  0/86335 (0%)  sender
+[  5]   0.00-10.00  sec   119 MBytes   100 Mbits/sec  0.003 ms  0/86335 (0%)  receiver
+
+iperf Done.
+
+Test 5: Reverse mode (server sends to client)
+Connecting to host 192.168.50.12, port 5201
+Reverse mode, remote host 192.168.50.12 is sending
+[  5] local 192.168.50.11 port 51886 connected to 192.168.50.12 port 5201
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.00   sec   112 MBytes   939 Mbits/sec                  
+[  5]   1.00-2.00   sec   112 MBytes   941 Mbits/sec                  
+[  5]   2.00-3.00   sec   112 MBytes   942 Mbits/sec                  
+[  5]   3.00-4.00   sec   112 MBytes   941 Mbits/sec                  
+[  5]   4.00-5.00   sec   109 MBytes   917 Mbits/sec                  
+[  5]   5.00-6.00   sec   108 MBytes   905 Mbits/sec                  
+[  5]   6.00-7.00   sec   108 MBytes   904 Mbits/sec                  
+[  5]   7.00-8.00   sec   112 MBytes   938 Mbits/sec                  
+[  5]   8.00-9.00   sec   112 MBytes   941 Mbits/sec                  
+[  5]   9.00-10.00  sec   106 MBytes   892 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec  1.08 GBytes   931 Mbits/sec    0            sender
+[  5]   0.00-10.00  sec  1.08 GBytes   926 Mbits/sec                  receiver
+
+iperf Done.
+
+Test 6: Bidirectional test
+Connecting to host 192.168.50.12, port 5201
+[  5] local 192.168.50.11 port 48272 connected to 192.168.50.12 port 5201
+[  7] local 192.168.50.11 port 48288 connected to 192.168.50.12 port 5201
+[ ID][Role] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5][TX-C]   0.00-1.00   sec  82.6 MBytes   692 Mbits/sec    0   1.47 MBytes       
+[  7][RX-C]   0.00-1.00   sec   101 MBytes   843 Mbits/sec                  
+[  5][TX-C]   1.00-2.00   sec   104 MBytes   876 Mbits/sec    0   1.51 MBytes       
+[  7][RX-C]   1.00-2.00   sec  81.5 MBytes   685 Mbits/sec                  
+[  5][TX-C]   2.00-3.00   sec   104 MBytes   877 Mbits/sec    0   2.00 MBytes       
+[  7][RX-C]   2.00-3.00   sec  92.4 MBytes   775 Mbits/sec                  
+[  5][TX-C]   3.00-4.00   sec  99.6 MBytes   837 Mbits/sec    0   2.36 MBytes       
+[  7][RX-C]   3.00-4.00   sec  97.8 MBytes   821 Mbits/sec                  
+[  5][TX-C]   4.00-5.00   sec   101 MBytes   845 Mbits/sec    0   2.62 MBytes       
+[  7][RX-C]   4.00-5.00   sec  97.4 MBytes   816 Mbits/sec                  
+[  5][TX-C]   5.00-6.00   sec   104 MBytes   872 Mbits/sec    0   2.62 MBytes       
+[  7][RX-C]   5.00-6.00   sec  70.9 MBytes   595 Mbits/sec                  
+[  5][TX-C]   6.00-7.00   sec   103 MBytes   861 Mbits/sec    0   2.62 MBytes       
+[  7][RX-C]   6.00-7.00   sec  87.6 MBytes   735 Mbits/sec                  
+[  5][TX-C]   7.00-8.00   sec   108 MBytes   908 Mbits/sec    0   2.62 MBytes       
+[  7][RX-C]   7.00-8.00   sec  51.5 MBytes   432 Mbits/sec                  
+[  5][TX-C]   8.00-9.00   sec   102 MBytes   855 Mbits/sec    0   2.77 MBytes       
+[  7][RX-C]   8.00-9.00   sec  83.0 MBytes   696 Mbits/sec                  
+[  5][TX-C]   9.00-10.00  sec   104 MBytes   868 Mbits/sec    0   2.77 MBytes       
+[  7][RX-C]   9.00-10.00  sec  91.6 MBytes   768 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID][Role] Interval           Transfer     Bitrate         Retr
+[  5][TX-C]   0.00-10.00  sec  1015 MBytes   851 Mbits/sec    0            sender
+[  5][TX-C]   0.00-10.00  sec  1012 MBytes   849 Mbits/sec                  receiver
+[  7][RX-C]   0.00-10.00  sec   856 MBytes   718 Mbits/sec    0            sender
+[  7][RX-C]   0.00-10.00  sec   854 MBytes   716 Mbits/sec                  receiver
+
+iperf Done.
+
+==========================================
+INVESTIGATION COMPLETE
+==========================================
+
+QUICK FIXES TO TRY:
+-------------------
+1. If speed shows 10Mbps instead of 100/1000Mbps:
+   - Check/replace Ethernet cable
+   - Check switch port configuration
+
+2. If half-duplex detected:
+   sudo ethtool -s eth0 speed 1000 duplex full autoneg on
+
+3. If MTU is low (< 1500):
+   sudo ip link set eth0 mtu 1500
+
+4. If tc rate limiting found:
+   sudo tc qdisc del dev eth0 root
+
+5. Disable power management (can throttle WiFi):
+   sudo iwconfig eth0 power off  # for WiFi only
+
+6. Update firmware and packages:
+   sudo apt update && sudo apt upgrade -y
+   sudo rpi-update  # firmware update
+
+

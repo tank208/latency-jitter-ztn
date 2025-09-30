@@ -1,0 +1,13 @@
+iperf3: interrupt - the client has terminated
+Connecting to host 192.168.50.12, port 5201
+[  5] local 192.168.50.11 port 53621 connected to 192.168.50.12 port 5201
+[ ID] Interval           Transfer     Bitrate         Total Datagrams
+[  5]   0.00-10.01  sec  1.19 MBytes  1.00 Mbits/sec  865  
+[  5]  10.01-20.01  sec  1.19 MBytes  1000 Kbits/sec  863  
+[  5]  20.01-30.01  sec  1.19 MBytes  1000 Kbits/sec  863  
+[  5]  30.01-40.01  sec  1.19 MBytes  1000 Kbits/sec  863  
+[  5]  40.01-40.19  sec  22.6 KBytes  1.05 Mbits/sec  16  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-40.19  sec  4.79 MBytes  1.00 Mbits/sec  0.000 ms  0/3470 (0%)  sender
+[  5]   0.00-40.19  sec  0.00 Bytes  0.00 bits/sec  0.000 ms  0/0 (0%)  receiver

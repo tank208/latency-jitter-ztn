@@ -1,0 +1,22 @@
+PING 192.168.50.12 (192.168.50.12) 56(84) bytes of data.
+[1758837040.463259] 64 bytes from 192.168.50.12: icmp_seq=1 ttl=64 time=0.597 ms
+[1758837041.522043] 64 bytes from 192.168.50.12: icmp_seq=2 ttl=64 time=0.233 ms
+[1758837042.546022] 64 bytes from 192.168.50.12: icmp_seq=3 ttl=64 time=0.232 ms
+[1758837043.570027] 64 bytes from 192.168.50.12: icmp_seq=4 ttl=64 time=0.236 ms
+[1758837044.594034] 64 bytes from 192.168.50.12: icmp_seq=5 ttl=64 time=0.248 ms
+[1758837045.617998] 64 bytes from 192.168.50.12: icmp_seq=6 ttl=64 time=0.225 ms
+[1758837046.642028] 64 bytes from 192.168.50.12: icmp_seq=7 ttl=64 time=0.245 ms
+[1758837047.666025] 64 bytes from 192.168.50.12: icmp_seq=8 ttl=64 time=0.233 ms
+[1758837048.690031] 64 bytes from 192.168.50.12: icmp_seq=9 ttl=64 time=0.233 ms
+[1758837049.713982] 64 bytes from 192.168.50.12: icmp_seq=10 ttl=64 time=0.210 ms
+[1758837050.738036] 64 bytes from 192.168.50.12: icmp_seq=11 ttl=64 time=0.222 ms
+[1758837051.762061] 64 bytes from 192.168.50.12: icmp_seq=12 ttl=64 time=0.247 ms
+[1758837052.786020] 64 bytes from 192.168.50.12: icmp_seq=13 ttl=64 time=0.222 ms
+[1758837053.809994] 64 bytes from 192.168.50.12: icmp_seq=14 ttl=64 time=0.213 ms
+[1758837054.834007] 64 bytes from 192.168.50.12: icmp_seq=15 ttl=64 time=0.219 ms
+[1758837055.858035] 64 bytes from 192.168.50.12: icmp_seq=16 ttl=64 time=0.234 ms
+[1758837056.882021] 64 bytes from 192.168.50.12: icmp_seq=17 ttl=64 time=0.224 ms
+[1758837057.906006] 64 bytes from 192.168.50.12: icmp_seq=18 ttl=64 time=0.225 ms
+[1758837058.929989] 64 bytes from 192.168.50.12: icmp_seq=19 ttl=64 time=0.210 ms
+[1758837059.954019] 64 bytes from 192.168.50.12: icmp_seq=20 ttl=64 time=0.227 ms
+[1758837060.978019] 64 bytes from 192.168.50.12: icmp_seq=21 ttl=64 time=0.227 ms

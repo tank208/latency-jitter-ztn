@@ -12,8 +12,13 @@ for log in "$@"; do
         if grep -q '^\[' "$log"; then
             start_epoch=$(head -n 1 "$log" | awk -F'[][]' '{print $2}')
             end_epoch=$(tail -n 1 "$log" | awk -F'[][]' '{print $2}')
-            start_human=$(date -d @"$start_epoch" +"%Y-%m-%d %H:%M:%S")
-            end_human=$(date -d @"$end_epoch" +"%Y-%m-%d %H:%M:%S")
+            if [[ "$start_epoch" =~ ^[0-9]+$ && "$end_epoch" =~ ^[0-9]+$ ]]; then
+                start_human=$(date -d @"$start_epoch" +"%Y-%m-%d %H:%M:%S")
+                end_human=$(date -d @"$end_epoch" +"%Y-%m-%d %H:%M:%S")
+            else
+                start_human="UNKNOWN"
+                end_human="UNKNOWN"
+            fi
         else
             start_human="UNKNOWN"
             end_human="UNKNOWN"
@@ -28,13 +33,33 @@ for log in "$@"; do
         echo "$log,ping,$start_human,$end_human,$stats,,,," >> "$OUTCSV"
 
     elif [[ $log == *iperf*.log ]]; then
-        # --- Extract first/last time markers for readability ---
-        start_time=$(grep 'sec' "$log" | head -n 1 | awk '{print $2}')
-        end_time=$(grep 'sec' "$log" | tail -n 1 | awk '{print $2}')
+        # --- Extract first/last interval lines for readability ---
+        start_line=$(grep 'sec' "$log" | head -n 1)
+        end_line=$(grep 'sec' "$log" | tail -n 1)
 
-        # --- Jitter + bandwidth averages ---
-        awk '/sec/{print $(NF-1), $(NF-3)}' "$log" | \
-        awk '{jitter+=$1; bw+=$2; n++} END {if(n>0) printf "%.3f,,%.3f", jitter/n, bw/n}' > /tmp/iperfstats.txt
+        start_time=$(echo "$start_line" | awk '{print $3}')
+        end_time=$(echo "$end_line" | awk '{print $3}')
+
+        # --- Parse jitter (ms) and bandwidth (normalize to Kbps) ---
+        awk '/sec/ && /bits\/sec/ {
+            jitter=""; bw="";
+            for(i=1;i<=NF;i++) {
+                if($i ~ /ms$/) { gsub("ms","",$i); jitter=$i }
+                if($(i+1)=="bits/sec") {
+                    bw=$(i)
+                    if(bw ~ /Kbits/) { sub("Kbits","",bw); bw_kbps=bw+0 }
+                    else if(bw ~ /Mbits/) { sub("Mbits","",bw); bw_kbps=(bw+0)*1000 }
+                    else if(bw ~ /Gbits/) { sub("Gbits","",bw); bw_kbps=(bw+0)*1000000 }
+                    else { bw_kbps=bw+0 }
+                }
+            }
+            if(jitter != "" && bw_kbps != "") {
+                jitter_sum+=jitter; bw_sum+=bw_kbps; n++
+            }
+        }
+        END {
+            if(n>0) printf "%.3f,%.3f", jitter_sum/n, bw_sum/n
+        }' "$log" > /tmp/iperfstats.txt
 
         stats=$(cat /tmp/iperfstats.txt)
         echo "$log,iperf,$start_time,$end_time,,,,${stats}" >> "$OUTCSV"

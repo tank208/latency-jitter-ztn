@@ -1,0 +1,12 @@
+file,type,start,end,avg_latency_ms,min_latency_ms,max_latency_ms,avg_jitter_ms,avg_bw_kbps
+data/baseline/20250929/ping_pi1_to_pi2_20250925_215040.log,ping,2025-09-25 14:50:40,2025-09-25 14:51:00,0.246,0.21,0.597,,
+data/baseline/20250929/ping_pi1_to_pi2_20250925_215250.log,ping,UNKNOWN,UNKNOWN,0.228,0.195,0.342,,
+data/baseline/20250929/ping_pi1_to_pi2_20250925_215457.log,ping,2025-09-25 14:54:57,2025-09-26 14:54:56,0.191,0.14,0.364,,
+data/baseline/20250929/ping_pi1_to_pi2_20250926_221506_weekend.log,ping,2025-09-26 15:15:06,2025-09-26 15:19:10,0.222,0.193,0.333,,
+data/baseline/20250929/ping_pi1_to_pi2_20250926_221830_weekend.log,ping,2025-09-26 15:18:30,2025-09-26 15:19:10,0.197,0.168,0.249,,
+data/baseline/20250929/ping_pi1_to_pi2_20250926_222003_weekend.log,ping,2025-09-26 15:20:03,2025-09-26 15:20:52,0.236,0.207,0.288,,
+data/baseline/20250929/ping_pi1_to_pi2_20250926_222135_weekend.log,ping,2025-09-26 15:21:35,2025-09-26 15:29:55,0.228,0.204,0.329,,
+data/baseline/20250929/ping_pi1_to_pi2_20250926_225039_weekend.log,ping,2025-09-26 15:50:39,2025-09-29 15:50:38,0.202,0.137,0.535,,
+data/baseline/20250929/weekend_iperf_run1.log,iperf,5],5],,,,0.005,750
+data/baseline/20250929/weekend_iperf_run2.log,iperf,5],5],,,,0.01,1000
+data/baseline/20250929/weekend_iperf_run3.log,iperf,5],5],,,,0.01,1000
