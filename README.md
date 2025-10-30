@@ -1,4 +1,4 @@
-# Latency & Jitter in Zero Trust Networks (NILE Case Study)
+# Latency & Jitter in Zero Trust Networks
 
 **Student:** Will Hall  
 **Faculty:** Dr. John Shovic, Dr. Mary Everett  
