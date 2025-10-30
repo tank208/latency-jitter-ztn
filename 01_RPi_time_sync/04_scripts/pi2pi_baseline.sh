@@ -1,9 +1,9 @@
 #!/bin/bash
 # Auto-log metadata before starting test
 SCRIPT_DIR="$(dirname "$0")"
-"$SCRIPT_DIR/log_metadata.sh" "/home/Research/latency-jitter-ztn/01_RPi_time_sync/02_data"
+"$SCRIPT_DIR/log_metadata.sh" "~/home/Research/latency-jitter-ztn/01_RPi_time_sync/02_data"
 RUN_ID=$(date +"%Y%m%d_%H%M%S")
-META_FILE="/home/Research/latency-jitter-ztn/01_RPi_time_sync/02_data_${RUN_ID}.txt"
+META_FILE="~/Research/latency-jitter-ztn/01_RPi_time_sync/02_data_${RUN_ID}.txt"
 iperf3 -c 192.168.10.11 -u -t 60 | tee "iperf_pi1_to_pi2_${RUN_ID}.log"
 echo "Metadata: $META_FILE" >> "iperf_pi1_to_pi2_${RUN_ID}.log"
 
@@ -37,6 +37,6 @@ kill $PING_PID 2>/dev/null
 echo "[INFO] Baseline complete at $(date +%Y%m%d_%H%M%S)"
 
 # Build manifest linking data logs and metadata
-python3 /home/Research/latency-jitter-ztn/01_RPi_time_sync/04_scripts/build_manifest.py \
-	/home/Research/latency-jitter-ztn/01_RPi_time_sync/02_data /home/Research/latency-jitter-ztn/01_RPi_time_sync/02_data/baseline
+python3 ~/Research/latency-jitter-ztn/01_RPi_time_sync/04_scripts/build_manifest.py \
+	~/Research/latency-jitter-ztn/01_RPi_time_sync/02_data ~/Research/latency-jitter-ztn/01_RPi_time_sync/02_data/baseline
 
