@@ -7,7 +7,7 @@
 ---
 
 ## Overview
-This repository documents an evolving research effort to measure, analyze, and improve **network timing precision and synchronization** in Zero-Trust and industrial environments.  
+The project measures latency and jitter in Zero-Trust environments and evaluates Precision Time Protocol (PTP) and Network Time Protocol (NTP) performance in industrial control system (ICS) and operational technology (OT) contexts.
 
 The project began with baseline **latency and jitter** analysis across isolated and Zero-Trust networks (NILE platform) and is now expanding into **secure, low-cost time synchronization** for electrical and industrial systems under the Energy Institute.
 
@@ -52,7 +52,7 @@ latency-jitter-ztn/
 ## Phase Summaries
 
 ### **Phase I – Raspberry Pi Time Sync**
-- **Goal:** Quantify latency, jitter, and clock synchronization performance on LAN and Zero Trust Network configurations using the NILE platform.  
+- **Goal:** Establishes baseline LAN latency and jitter using synchronized clocks on Raspberry Pi 4B nodes to validate deterministic Ethernet behavior and data acquisition consistency.
 - **Hardware:** Raspberry Pi 4B nodes on isolated switch.  
 - **Software:** Chrony, iperf3, ping, shell/Python automation.  
 - **Deliverables:**
@@ -63,7 +63,7 @@ latency-jitter-ztn/
 ---
 
 ### **Phase II – Infrastructure Timing Pivot**
-- **Goal:** Extend Phase I results toward **cyber-physical infrastructure timing** challenges — particularly secure, GPS-independent synchronization for electrical relays and micro-PLCs.  
+- **Goal:** Expands to cyber-physical systems by integrating micro-PLCs for hardware-in-loop timing tests, comparing PTP and NTP accuracy under encrypted overlays.  
 - **Hardware:** Raspberry Pi 4B + Arduino Opta (micro PLC).  
 - **Software:** PTP (IEEE 1588), Chrony, WireGuard/Tailscale overlays.  
 - **Deliverables:**
@@ -77,9 +77,10 @@ latency-jitter-ztn/
 
 1. **Baseline (Phase 1):** Measure network jitter across air-gapped and NILE Zero Trust configurations.  
 2. **Infrastructure Integration (Phase 2):** Couple network data with physical control timing.  
-3. **Secure Overlay:** Test how encryption layers affect precision.  
-4. **Resilient PNT Analysis:** Explore GPS-denied synchronization and trustworthiness of timing sources.  
-5. **Reporting:** Document, visualize, and publish results for academic and industry audiences.  
+3. **Secure Overlay:** Test how encryption layers affect precision.
+4. **Compare NTP vs PTP** performance under identical network conditions to quantify trade-offs in accuracy and resource load.
+5. **Resilient PNT Analysis:** Explore GPS-denied synchronization and trustworthiness of timing sources.  
+6. **Reporting:** Document, visualize, and publish results for academic and industry audiences.  
 
 ---
 
