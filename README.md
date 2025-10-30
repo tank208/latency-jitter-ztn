@@ -19,8 +19,8 @@ The project began with baseline **latency and jitter** analysis across isolated 
 
 | Phase | Title | Description | Status |
 |:------|:-------|:-------------|:--------|
-| **01** | [Raspberry Pi Time Sync (NILE Baseline)](./01_RPI_time_sync) | Establishes LAN latency and jitter baselines under NILE Zero Trust configurations. Uses Raspberry Pi 4B nodes, Chrony, and iperf3 for precise measurement. | ✅ Baseline complete |
-| **02** | [Infrastructure Timing Pivot (Energy Institute Collaboration)](./02_infrastructure_timing) | Builds on Phase 1 results by integrating micro-PLCs (Arduino Opta) for cyber-physical synchronization studies. Focus: PTP, GPS-independent timing, and secure overlays (Tailscale, WireGuard). | 🧩 In development |
+| **01** | [Raspberry Pi Time Sync](./01_RPI_time_sync) | Establishes LAN latency and jitter baselines under NILE Zero Trust configurations. Uses Raspberry Pi 4B nodes, Chrony, and iperf3 for precise measurement. | Baseline complete |
+| **02** | [Infrastructure Timing Pivot](./02_infrastructure_timing) | Builds on Phase 1 results by integrating micro-PLCs (Arduino Opta) for cyber-physical synchronization studies. Focus: PTP, GPS-independent timing, and secure overlays (Tailscale, WireGuard). | In development |
 | **DEVLOG** | [Research Logbook](./DEVLOG) | Daily/weekly development notes, test results, and progress summaries for both phases. | Ongoing |
 
 ---
@@ -86,9 +86,9 @@ latency-jitter-ztn/
 ---
 
 ## Current Status
-- ✅ Baseline data collection complete.  
-- 🔄 Pivot phase mapping (Energy Institute collaboration).  
-- 🧪 Integration and PTP testing scheduled.  
+- Baseline data collection complete.  
+- Pivot phase mapping (Energy Institute collaboration).  
+- Integration and PTP testing scheduled.  
 
 ---
 
