@@ -2,10 +2,8 @@
 
 **Student:** Will Hall  
 **Faculty:** Dr. John Shovic, Dr. Mary Everett  
-**Collaborator:** John Kume, Executive Director – Energy Institute  
 **Project Type:** FAFSA Work Study Research (transitioning to EPAF-funded Research)  
-**Institution:** University of Idaho – Coeur d’Alene, CS Lab / Energy Institute Collaboration  
-
+**Institution:** University of Idaho – Coeur d’Alene, Center for Intelligent Industrial Robotics (CIIR)
 ---
 
 ## Overview
