@@ -51,7 +51,7 @@ latency-jitter-ztn/
 
 ## Phase Summaries
 
-### **Phase I – Raspberry Pi Time Sync (NILE Baseline)**
+### **Phase I – Raspberry Pi Time Sync**
 - **Goal:** Quantify latency, jitter, and clock synchronization performance on LAN and Zero Trust Network configurations using the NILE platform.  
 - **Hardware:** Raspberry Pi 4B nodes on isolated switch.  
 - **Software:** Chrony, iperf3, ping, shell/Python automation.  
@@ -62,7 +62,7 @@ latency-jitter-ztn/
 
 ---
 
-### **Phase II – Infrastructure Timing Pivot (Energy Institute Collaboration)**
+### **Phase II – Infrastructure Timing Pivot**
 - **Goal:** Extend Phase I results toward **cyber-physical infrastructure timing** challenges — particularly secure, GPS-independent synchronization for electrical relays and micro-PLCs.  
 - **Hardware:** Raspberry Pi 4B + Arduino Opta (micro PLC).  
 - **Software:** PTP (IEEE 1588), Chrony, WireGuard/Tailscale overlays.  
